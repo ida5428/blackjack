@@ -26,6 +26,10 @@ public class Card {
       return rank;
    }
 
+   public String getCode() {
+      return rank.getCode();
+   }
+
    @Override
    public String toString() {
       return "Card{Suit=" + suit + ", Rank=" + rank + "}" ;
