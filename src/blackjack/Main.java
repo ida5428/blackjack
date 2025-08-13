@@ -1,11 +1,10 @@
 package blackjack;
 
-import java.util.Random;
-import java.util.Scanner;
-import java.util.ArrayList;
-
 import blackjack.utils.*;
 import static blackjack.utils.Formatting.*;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
    public static void main(String[] args) throws InterruptedException {
@@ -261,88 +260,62 @@ public class Main {
 
             String rank = card.getRank().getID();
             String suit = card.getSuit().getID();
-
-            switch (rank) {
-               case "A" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "00000000100000000", suit);
-               }
-               case "2" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "00010000000001000", suit);
-               }
-               case "3" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "00010000100001000", suit);
-               }
-               case "4" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "00101000000010100", suit);
-               }
-               case "5" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "00101000100010100", suit);
-               }
-               case "6" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "00101001010010100", suit);
-               }
-               case "7" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "11010001010000011", suit);
-               }
-               case "8" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "11010001010001011", suit);
-               }
-               case "9" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "11000110101100011", suit);
-               }
-               case "10" -> {
-                  cardTemplate = replaceCardTemplate(cardTemplate, "11010110001101011", suit);
-               }
-               case "J" -> {
-                  cardTemplate = """
-                     ╭─────────────────╮
-                     │ r              │
-                     │ s 0         0   │
-                     │        0        │
-                     │   0         0   │
-                     │      jack       │
-                     │   0         0   │
-                     │        0        │
-                     │   0         0 s │
-                     │               r│
-                     ╰─────────────────╯
-                  """;
-                  break;
-               }
-               case "Q" -> {
-                  cardTemplate = """
-                     ╭─────────────────╮
-                     │ r              │
-                     │ s 0         0   │
-                     │        0        │
-                     │   0         0   │
-                     │      queen      │
-                     │   0         0   │
-                     │        0        │
-                     │   0         0 s │
-                     │               r│
-                     ╰─────────────────╯
-                  """;
-                  break;
-               }
-               case "K" -> {
-                  cardTemplate = """
-                     ╭─────────────────╮
-                     │ r   _.+._      │
-                     │ s  (^\\/^\\/^)    │
-                     │     \\@*@*@/     │
-                     │     {_____}     │
-                     │    ///"'"\\\\\\    │
-                     │    (/6   6\\)    │
-                     │     ||=^=||     │
-                     │     \\\\\\\\///   s │
-                     │      \\\\///    r│
-                     ╰─────────────────╯
-                  """;
-                  break;
+            
+            if (!rank.equals("J") && !rank.equals("Q") && !rank.equals("K")) {
+               cardTemplate = replaceCardTemplate(cardTemplate, card.getCode(), suit);
+            }
+            else {
+               switch (rank) {
+                  case "J" -> {
+                     cardTemplate = """
+                        ╭─────────────────╮
+                        │ r              │
+                        │ s 0         0   │
+                        │        0        │
+                        │   0         0   │
+                        │      jack       │
+                        │   0         0   │
+                        │        0        │
+                        │   0         0 s │
+                        │               r│
+                        ╰─────────────────╯
+                     """;
+                     break;
+                  }
+                  case "Q" -> {
+                     cardTemplate = """
+                        ╭─────────────────╮
+                        │ r              │
+                        │ s 0         0   │
+                        │        0        │
+                        │   0         0   │
+                        │      queen      │
+                        │   0         0   │
+                        │        0        │
+                        │   0         0 s │
+                        │               r│
+                        ╰─────────────────╯
+                     """;
+                     break;
+                  }
+                  case "K" -> {
+                     cardTemplate = """
+                        ╭─────────────────╮
+                        │ r   _.+._      │
+                        │ s  (^\\/^\\/^)    │
+                        │     \\@*@*@/     │
+                        │     {_____}     │
+                        │    ///"'"\\\\\\    │
+                        │    (/6   6\\)    │
+                        │     ||=^=||     │
+                        │     \\\\\\\\///   s │
+                        │      \\\\///    r│
+                        ╰─────────────────╯
+                     """;
+                     break;
+                  }
                }
             }
-
 
             if (hiddenCard) {
                cardTemplate = """
