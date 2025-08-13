@@ -12,9 +12,9 @@ public enum CardRank {
    EIGHT("8", "Eight", 8, "11010001010001011"),
    NINE("9", "Nine", 9, "11000110101100011"),
    TEN("10", "Ten", 10, "11010110001101011"),
-   JACK("J", "Jack", 10, ""),
-   QUEEN("Q", "Queen", 10, ""),
-   KING("K", "King", 10, "");
+   JACK("J", "Jack", 10, "J"),
+   QUEEN("Q", "Queen", 10, "Q"),
+   KING("K", "King", 10, "K");
 
    private String id;
    private String name;

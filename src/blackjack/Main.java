@@ -241,97 +241,12 @@ public class Main {
 
       for (int i = 0; i < 11; i++) {
          for (Card card : cards) {
-            String cardTemplate = """
-               ╭─────────────────╮
-               │ r              │
-               │ s x         x   │
-               │   x    x    x   │
-               │   x         x   │
-               │   x    x    x   │
-               │   x         x   │
-               │   x    x    x   │
-               │   x         x s │
-               │               r│
-               ╰─────────────────╯
-            """;
-
-
             boolean hiddenCard = !isPlayer && dealerHasFaceDown && cards.indexOf(card) == 1;
 
             String rank = card.getRank().getID();
             String suit = card.getSuit().getID();
             
-            if (!equalsAny(rank, "J", "Q", "K")) {
-               cardTemplate = replaceCardTemplate(cardTemplate, card.getCode(), suit);
-            }
-            else {
-               switch (rank) {
-                  case "J" -> {
-                     cardTemplate = """
-                        ╭─────────────────╮
-                        │ r              │
-                        │ s 0         0   │
-                        │        0        │
-                        │   0         0   │
-                        │      jack       │
-                        │   0         0   │
-                        │        0        │
-                        │   0         0 s │
-                        │               r│
-                        ╰─────────────────╯
-                     """;
-                     break;
-                  }
-                  case "Q" -> {
-                     cardTemplate = """
-                        ╭─────────────────╮
-                        │ r              │
-                        │ s 0         0   │
-                        │        0        │
-                        │   0         0   │
-                        │      queen      │
-                        │   0         0   │
-                        │        0        │
-                        │   0         0 s │
-                        │               r│
-                        ╰─────────────────╯
-                     """;
-                     break;
-                  }
-                  case "K" -> {
-                     cardTemplate = """
-                        ╭─────────────────╮
-                        │ r   _.+._      │
-                        │ s  (^\\/^\\/^)    │
-                        │     \\@*@*@/     │
-                        │     {_____}     │
-                        │    ///"'"\\\\\\    │
-                        │    (/6   6\\)    │
-                        │     ||=^=||     │
-                        │     \\\\\\\\///   s │
-                        │      \\\\///    r│
-                        ╰─────────────────╯
-                     """;
-                     break;
-                  }
-               }
-            }
-
-            if (hiddenCard) {
-               cardTemplate = """
-                  ╭─────────────────╮
-                  │ ??              │
-                  │ ? .         .   │
-                  │   .    .    .   │
-                  │   .         .   │
-                  │   .    .    .   │
-                  │   .         .   │
-                  │   .    .    .   │
-                  │   .         . ? │
-                  │               ??│
-                  ╰─────────────────╯
-               """;
-            }
+            String cardTemplate = generateCardTemplate(card.getCode(), suit, hiddenCard);
 
             String[] splitTemplate = cardTemplate.split("\n");
             String line = splitTemplate[i];
@@ -348,7 +263,83 @@ public class Main {
       }
    }
 
-   public static String replaceCardTemplate(String cardTemplate, String selection, String suit) {
+   public static String generateCardTemplate(String selection, String suit, boolean isHidden) {
+      if (isHidden) {
+         return """
+            ╭─────────────────╮
+            │ ??              │
+            │ ? .         .   │
+            │   .    .    .   │
+            │   .         .   │
+            │   .    .    .   │
+            │   .         .   │
+            │   .    .    .   │
+            │   .         . ? │
+            │               ??│
+            ╰─────────────────╯
+         """;
+      }
+
+      switch (selection) {
+         case "J" -> {
+            return """
+               ╭─────────────────╮
+               │ r              │
+               │ s 0         0   │
+               │        0        │
+               │   0         0   │
+               │      jack       │
+               │   0         0   │
+               │        0        │
+               │   0         0 s │
+               │               r│
+               ╰─────────────────╯
+            """;
+         } case "Q" -> {
+            return """
+               ╭─────────────────╮
+               │ r              │
+               │ s 0         0   │
+               │        0        │
+               │   0         0   │
+               │      queen      │
+               │   0         0   │
+               │        0        │
+               │   0         0 s │
+               │               r│
+               ╰─────────────────╯
+            """;
+         } case "K" -> {
+            return """
+               ╭─────────────────╮
+               │ r   _.+._      │
+               │ s  (^\\/^\\/^)    │
+               │     \\@*@*@/     │
+               │     {_____}     │
+               │    ///"'"\\\\\\    │
+               │    (/6   6\\)    │
+               │     ||=^=||     │
+               │     \\\\\\\\///   s │
+               │      \\\\///    r│
+               ╰─────────────────╯
+            """;
+         }
+      }
+
+      String cardTemplate = """
+         ╭─────────────────╮
+         │ r              │
+         │ s x         x   │
+         │   x    x    x   │
+         │   x         x   │
+         │   x    x    x   │
+         │   x         x   │
+         │   x    x    x   │
+         │   x         x s │
+         │               r│
+         ╰─────────────────╯
+      """;
+
       for (int i = 0; i < selection.length(); i++) {
          char point = selection.charAt(i);
 
