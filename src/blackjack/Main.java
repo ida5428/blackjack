@@ -261,7 +261,7 @@ public class Main {
             String rank = card.getRank().getID();
             String suit = card.getSuit().getID();
             
-            if (!rank.equals("J") && !rank.equals("Q") && !rank.equals("K")) {
+            if (!equalsAny(rank, "J", "Q", "K")) {
                cardTemplate = replaceCardTemplate(cardTemplate, card.getCode(), suit);
             }
             else {
