@@ -280,20 +280,6 @@ public class Main {
          """;
       }
 
-      String cardTemplate = """
-         ╭─────────────────╮
-         │ r              │
-         │ s x         x   │
-         │   x    x    x   │
-         │   x         x   │
-         │   x    x    x   │
-         │   x         x   │
-         │   x    x    x   │
-         │   x         x s │
-         │               r│
-         ╰─────────────────╯
-      """;
-
       switch (selection) {
          case "J" -> {
             return """
@@ -341,6 +327,20 @@ public class Main {
             """;
          }
       }
+
+      String cardTemplate = """
+         ╭─────────────────╮
+         │ r              │
+         │ s x         x   │
+         │   x    x    x   │
+         │   x         x   │
+         │   x    x    x   │
+         │   x         x   │
+         │   x    x    x   │
+         │   x         x s │
+         │               r│
+         ╰─────────────────╯
+      """;
 
       for (int i = 0; i < selection.length(); i++) {
          char point = selection.charAt(i);
