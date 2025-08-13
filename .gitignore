@@ -20,3 +20,6 @@ replay_pid*
 
 # Misc.
 **/.DS_Store
+
+# Stop Kaiden's settings from getting onto the repo
+.vscode/
