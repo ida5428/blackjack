@@ -4,7 +4,11 @@ The game of Blackjack made in Java.
 ## Build & Run Instructions
 1. Clone this repository: `git clone https://github.com/ida5428/blackjack.git`
 2. `cd blackjack`
-3. Compile: `javac -d bin src/**/*.java`
+3. Compile:
+   - Windows:
+      - `javac -d bin src\blackjack\Main.java src\blackjack\utils\*.java`
+   - UNIX (macOS/Linux):
+      - `javac -d bin src/blackjack/Main.java src/blackjack/utils/*.java`
 4. Run: `java -cp bin blackjack.Main`
 
 ## License

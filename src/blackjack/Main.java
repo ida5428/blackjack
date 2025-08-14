@@ -1,10 +1,11 @@
 package blackjack;
 
-import blackjack.utils.*;
-import static blackjack.utils.Formatting.*;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
+
+import blackjack.utils.*;
+import static blackjack.utils.Formatting.*;
 
 public class Main {
    public static void main(String[] args) throws InterruptedException {
@@ -229,7 +230,6 @@ public class Main {
    }
 
    public static void printCards(ArrayList<Card> cards, boolean isPlayer, boolean dealerHasFaceDown) {
-
       if (isPlayer) {
          print(CYAN, "\nYour cards: ");
          print(BLUE, getHandValue(cards) + "\n");
@@ -238,23 +238,21 @@ public class Main {
          print(BLUE, (dealerHasFaceDown ? "??" : getHandValue(cards)) + "\n");
       }
 
-
       for (int i = 0; i < 11; i++) {
          for (Card card : cards) {
             boolean hiddenCard = !isPlayer && dealerHasFaceDown && cards.indexOf(card) == 1;
 
             String rank = card.getRank().getID();
             String suit = card.getSuit().getID();
-            
-            String cardTemplate = generateCardTemplate(card.getCode(), suit, hiddenCard);
 
+            String cardTemplate = generateCardTemplate(card.getCode(), suit, hiddenCard);
             String[] splitTemplate = cardTemplate.split("\n");
             String line = splitTemplate[i];
 
             if (!hiddenCard) {
                suit = colour(equalsAny(suit, "\u2665", "\u2666") ? RED : MAGENTA, suit);
                rank = colour(WHITE, rank);
-               line = line.replace("s", suit).replace("r", rank + (rank.contains("10") ? "" : " "));
+               line = line.replace("s", suit).replace("rr", rank + (rank.contains("10") ? "" : " "));
             }
 
             System.out.print(line + "  ");
@@ -284,7 +282,7 @@ public class Main {
          case "J" -> {
             return """
                ╭─────────────────╮
-               │ r              │
+               │ rr              │
                │ s 0         0   │
                │        0        │
                │   0         0   │
@@ -292,13 +290,13 @@ public class Main {
                │   0         0   │
                │        0        │
                │   0         0 s │
-               │               r│
+               │               rr│
                ╰─────────────────╯
             """;
          } case "Q" -> {
             return """
                ╭─────────────────╮
-               │ r              │
+               │ rr              │
                │ s 0         0   │
                │        0        │
                │   0         0   │
@@ -306,13 +304,13 @@ public class Main {
                │   0         0   │
                │        0        │
                │   0         0 s │
-               │               r│
+               │               rr│
                ╰─────────────────╯
             """;
          } case "K" -> {
             return """
                ╭─────────────────╮
-               │ r   _.+._      │
+               │ rr   _.+._      │
                │ s  (^\\/^\\/^)    │
                │     \\@*@*@/     │
                │     {_____}     │
@@ -320,7 +318,7 @@ public class Main {
                │    (/6   6\\)    │
                │     ||=^=||     │
                │     \\\\\\\\///   s │
-               │      \\\\///    r│
+               │      \\\\///    rr│
                ╰─────────────────╯
             """;
          }
@@ -328,7 +326,7 @@ public class Main {
 
       String cardTemplate = """
          ╭─────────────────╮
-         │ r              │
+         │ rr              │
          │ s x         x   │
          │   x    x    x   │
          │   x         x   │
