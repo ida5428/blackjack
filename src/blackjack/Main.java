@@ -134,9 +134,9 @@ public class Main {
             lossCount++;
          }
 
-         System.out.println("You've drawn " + drawCount + " time(s).");
-         System.out.println("You've won " + winCount + " time(s).");
-         System.out.println("You've lost " + lossCount + " time(s).");
+         System.out.println("You've " + colour(GREEN, "won ") + winCount + " time(s).");
+         System.out.println("You've " + colour(YELLOW, "drawn ") + drawCount + " time(s).");
+         System.out.println("You've " + colour(RED, "lost ") + lossCount + " time(s).");
 
          while (canPlayAgain) {
             print(BLUE, "Do you want to play again?\n");
