@@ -24,6 +24,10 @@ public class Main {
       ArrayList<Card> playerCards = null;
       ArrayList<Card> dealerCards = null;
 
+      int winCount = 0;
+      int lossCount = 0;
+      int drawCount = 0;
+
       while (isPlaying) {
          if (introSeq) {
             dealerHasFaceDown = true;
@@ -106,21 +110,33 @@ public class Main {
 
          if (playerHand > 21 && dealerHand > 21) {
             System.out.println("You both broke your hand. It's a " + colour(YELLOW, "draw") + ".\n");
+            drawCount++;
          } else if (playerHand > 21) {
             System.out.println("Your hand broke. " + colour(RED, "You lose") + ".\n");
+            lossCount++;
          } else if (dealerHand > 21) {
             System.out.println("The Dealers hand broke. " + colour(GREEN, "You win") + ".\n");
+            winCount++;
          } else if (playerHand == dealerHand) {
             System.out.println("It's a " + colour(YELLOW, "draw") + ".\n");
+            drawCount++;
          } else if (playerHand == 21) {
             System.out.println("You got 21. " + colour(GREEN, "You win") + ".\n");
+            winCount++;
          } else if (dealerHand == 21) {
             System.out.println("Dealer got 21. " + colour(RED, "You lose") + ".\n");
+            lossCount++;
          } else if (playerHand > dealerHand) {
             System.out.println(colour(GREEN, "You win ") + "with " + playerHand + ".\n");
+            winCount++;
          } else {
             System.out.println("Dealer wins with " + dealerHand + ". " + colour(RED, "You lose") + ".\n");
+            lossCount++;
          }
+
+         System.out.println("You've drawn " + drawCount + " time(s).");
+         System.out.println("You've won " + winCount + " time(s).");
+         System.out.println("You've lost " + lossCount + " time(s).");
 
          while (canPlayAgain) {
             print(BLUE, "Do you want to play again?\n");
@@ -334,7 +350,7 @@ public class Main {
          │   x         x   │
          │   x    x    x   │
          │   x         x s │
-         │               r│
+         │               rr│
          ╰─────────────────╯
       """;
 
